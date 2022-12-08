@@ -48,6 +48,10 @@ header {
     border: 2px solid black;
 }
 
+#option-list {
+    list-style: none;
+}
+
 button {
     padding: 10px;
     margin: 5px;
