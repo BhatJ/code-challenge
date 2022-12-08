@@ -1,10 +1,8 @@
+
 window.onload = function() { 
     setInterval(checkTime, 1000);
 }
 
-// Define an array of multiple choice question objects.
-// Each object has variable for the question, four variables for the possible answers
-// and the answer to the question.
 var questionsArr = [
     {
         "question": "Commonly used data types DO NOT include",
@@ -47,14 +45,28 @@ var titleTextEl = document.querySelector("#title-text");
 var optionList = document.querySelector("#option-list");
 var answersTextEl = document.querySelector("#answers-text");
 var resultEl = document.querySelector("#result");
+var submitEl = document.querySelector("#submit");
+var submitBtn = document.querySelector("#submit-button");
+var backEl = document.querySelector("#go-back");
+var goBackBtn = document.querySelector("#go-back-button");
+var clearScoresBtn = document.querySelector("#clear-scores-button");
 
 var count = 75;
 var questionIndex = 0;
 var quizStarted = false;
 
 function checkTime() {
-    timeEl.textContent = count;
-    count--;
+
+    if (quizStarted == true)
+    {
+        if (count === 0)
+        {
+            completeQuiz();
+        }
+
+        timeEl.textContent = count;
+        count--;
+    }
 }
 
 function loadNextQuestion() {
@@ -65,6 +77,29 @@ function loadNextQuestion() {
     optionList.children[3].children[0].textContent = questionsArr[questionIndex].option4;
 
     quizStarted = true;
+}
+
+function completeQuiz() {
+    titleTextEl.textContent = "All done!";
+    optionList.setAttribute("style", "display: none");
+    answersTextEl.setAttribute("style", "display: block");
+    answersTextEl.textContent = "Your score is " + count;
+    quizStarted = false;
+
+    submitEl.setAttribute("style", "display: block");
+}
+
+function resetQuiz() {
+    count = 75;
+    questionIndex = 0;
+    quizStarted = false;
+
+    titleTextEl.textContent = "Coding Quiz Challenge!";
+    answersTextEl.setAttribute("style", "display: block");
+    answersTextEl.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoreTime by ten seconds!";
+    backEl.setAttribute("style", "display: none");
+    startQuizBtn.setAttribute("style", "display: flex");
+    startQuizBtn.setAttribute("style", "justify-content: space-around");
 }
 
 startQuizBtn.addEventListener("click", function() {
@@ -115,10 +150,30 @@ answersEl.addEventListener("click", function(event) {
         questionIndex++;
         if (questionIndex == questionsArr.length)
         {
-            // Todo
+            completeQuiz();
         } else
         {
             loadNextQuestion();
         }
     }, 2000);  
+});
+
+submitBtn.addEventListener("click", function() {
+    titleTextEl.textContent = "High Scores!";
+    optionList.setAttribute("style", "display: none");
+    answersTextEl.setAttribute("style", "display: none");
+
+    var initials = submitBtn.textContent;
+    console.log(initials);
+
+    submitEl.setAttribute("style", "display: none");
+    backEl.setAttribute("style", "display: block");
+});
+
+goBackBtn.addEventListener("click", function() {
+   resetQuiz();
+});
+
+clearScoresBtn.addEventListener("click", function() {
+    
 });

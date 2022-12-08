@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Coding Quiz Challenge</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
         <p id="high-scores">View High Scores</p>
         <p id="timer">Time: <span id="time">0</span></p>
     </header>
-    
+
     <div>
         <div id="title">
             <h1 id="title-text">Coding Quiz Challenge!</h1>
@@ -33,6 +33,15 @@
         <div id="start">
             <button id="start-button">Start Quiz</button>
             <h3 style="display: none"; id="result"></h3>
+            <div style="display: none"; id="submit">
+                <label for="initials-label">Enter your initials:</label>
+                <input type="text" id="initials-label" name="initials-label">
+                <input id="submit-button" type="submit" value="Submit">
+            </div>
+            <div style="display: none"; id="go-back">
+                <input id="go-back-button" type="submit" value="Go Back">
+                <input id="clear-scores-button" type="submit" value="Clear High Scores">
+            </div>
         </div>
     </div>
 
